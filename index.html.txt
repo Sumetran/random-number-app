@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจสอบคำและสุ่มตัวเลข</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .purple-background {
+            background-color: purple;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>กรุณาพิมพ์ข้อความ</h1>
+        <input type="text" id="inputMessage" placeholder="พิมพ์ที่นี่..." onkeypress="checkEnter(event)">
+        <button onclick="showMessage()">แสดงข้อความ</button>
+        <button onclick="generateRandomNumber()">สุ่มตัวเลข 5 หลัก</button>
+
+        <h2>ข้อความที่แสดง:</h2>
+        <p id="displayMessage"></p> <!-- พื้นที่สำหรับแสดงข้อความ -->
+        <p id="charCount"></p> <!-- พื้นที่สำหรับแสดงจำนวนตัวอักษร -->
+        <h2>ตัวเลขสุ่ม:</h2>
+        <p id="randomNumber"></p> <!-- พื้นที่สำหรับแสดงตัวเลขสุ่ม -->
+    </div>
+
+    <script>
+        function showMessage() {
+            var userInput = document.getElementById("inputMessage").value;
+            var displayElement = document.getElementById("displayMessage");
+            var charCountElement = document.getElementById("charCount");
+
+            displayElement.innerText = userInput;
+            charCountElement.innerText = "จำนวนตัวอักษร: " + userInput.length;
+
+            if (userInput.toLowerCase() === "frank") {
+                displayElement.classList.add("purple-background");
+            } else {
+                displayElement.classList.remove("purple-background");
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === "Enter") {
+                showMessage();
+            }
+        }
+
+        function generateRandomNumber() {
+            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+            document.getElementById("randomNumber").innerText = randomNumber;
+        }
+    </script>
+</body>
+</html>
